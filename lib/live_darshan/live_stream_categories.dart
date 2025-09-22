@@ -357,11 +357,7 @@
 // }
 //
 
-
-
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:darbar_app_of_kambar_darbar/ScreenArguments.dart';
 import 'dart:io' show Platform;
@@ -401,8 +397,10 @@ class _LiveStreamCategoriesState extends State<LiveStreamCategories> {
 
   Future<void> _fetchCameraLinks() async {
     const String apiUrl = 'https://kambardarbar.org/cameralinks.php';
+
     try {
       final response = await http.get(Uri.parse(apiUrl));
+
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         if (data['status'] == 'success' && data['links'] != null) {
@@ -448,11 +446,11 @@ class _LiveStreamCategoriesState extends State<LiveStreamCategories> {
       ),
       body: _isLoading
           ? const Center(
-          child:
-          CircularProgressIndicator()) // Show loader while fetching data
+              child:
+                  CircularProgressIndicator()) // Show loader while fetching data
           : _isError
-          ? const Center(child: Text('Failed to load camera links'))
-          : _buildCameraList(), // Build camera cards dynamically
+              ? const Center(child: Text('Failed to load camera links'))
+              : _buildCameraList(), // Build camera cards dynamically
     );
   }
 
@@ -467,7 +465,8 @@ class _LiveStreamCategoriesState extends State<LiveStreamCategories> {
       ),
       itemCount: _cameraLinks.length,
       shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(), // Prevents GridView from scrolling
+      physics:
+          const NeverScrollableScrollPhysics(), // Prevents GridView from scrolling
       itemBuilder: (context, index) {
         final camera = _cameraLinks[index];
         final title = camera['Title'];
@@ -493,7 +492,7 @@ class _LiveStreamCategoriesState extends State<LiveStreamCategories> {
             },
             child:
 
-            // child: Card(
+                // child: Card(
 //                       child: Column(
 //                         mainAxisSize: MainAxisSize.min,
 //                         children: <Widget>[
@@ -531,7 +530,7 @@ class _LiveStreamCategoriesState extends State<LiveStreamCategories> {
 //                         ],
 //                       ),
 //                     ),
-            Column(
+                Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 ClipRRect(
@@ -549,7 +548,8 @@ class _LiveStreamCategoriesState extends State<LiveStreamCategories> {
                 Container(
                   decoration: const BoxDecoration(
                       border: Border(top: BorderSide(width: 1))),
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   alignment: Alignment.center,
                   child: Text(
                     title,
@@ -571,4 +571,3 @@ class _LiveStreamCategoriesState extends State<LiveStreamCategories> {
     );
   }
 }
-
