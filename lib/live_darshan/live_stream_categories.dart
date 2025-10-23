@@ -473,6 +473,13 @@ class _LiveStreamCategoriesState extends State<LiveStreamCategories> {
         final imageUrl = _imageMapping[title] ?? '';
         final androidLink = androidLinks[title] ?? '';
 
+        // Get a list of keys to access by index
+        final keysList = androidLinks.keys.toList();
+
+        String selectedKey = keysList[index];
+        String selectedLink = androidLinks[selectedKey]!;
+
+
         return Card(
           child: InkWell(
             onTap: () {
@@ -486,7 +493,7 @@ class _LiveStreamCategoriesState extends State<LiveStreamCategories> {
                 Navigator.pushNamed(
                   context,
                   '/livevideo',
-                  arguments: ScreenArguments(1, androidLink, 1),
+                  arguments: ScreenArguments(index + 1, selectedLink, index + 1),
                 );
               }
             },

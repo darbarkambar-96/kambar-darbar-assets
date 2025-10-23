@@ -96,6 +96,9 @@ class _LiveStreamScreenState extends State<LiveStreamScreen>
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
+      print('hello url: ${args.data}');
+      print('hello url1: ${args.id}');
+      print('hello url1: ${args.data2}');
     _videoPlayerController = VlcPlayerController.network(
       args.data,
       hwAcc: HwAcc.full,
@@ -108,13 +111,13 @@ class _LiveStreamScreenState extends State<LiveStreamScreen>
     final key = args.data2;
     String titlemain = "Kambar Darbar";
     if (key == 1) {
-      titlemain = "Sainjans Room";
-    } else if (key == 2) {
-      titlemain = "Gurus Room";
-    } else if (key == 3) {
       titlemain = "Samadhi Room";
-    } else if (key == 4) {
+    } else if (key == 2) {
       titlemain = "Samadhi Room Closeup";
+    } else if (key == 3) {
+      titlemain = "Samadhi Room Gurus Room";
+    } else if (key == 4) {
+      titlemain = "Sainjans Room";
     }
     final ButtonStyle style =
         ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
