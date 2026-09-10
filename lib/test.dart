@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_vlc_player/flutter_vlc_player.dart';
+import 'package:flutter_vlc_player_16kb/flutter_vlc_player.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:darbar_app_of_kambar_darbar/ScreenArguments.dart';
 import 'package:http/http.dart' as http;

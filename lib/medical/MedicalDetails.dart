@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_vlc_player/flutter_vlc_player.dart';
+import 'package:flutter_vlc_player_16kb/flutter_vlc_player.dart';
 import 'dart:convert';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:darbar_app_of_kambar_darbar/ScreenArguments.dart';

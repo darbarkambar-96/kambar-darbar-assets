@@ -1,386 +1,23 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
-// import 'package:fluttertoast/fluttertoast.dart';
-// import 'package:google_fonts/google_fonts.dart';
-// import 'package:darbar_app_of_kambar_darbar/ScreenArguments.dart';
-// import 'dart:io' show Platform;
-//
-// class LiveStreamCategories extends StatefulWidget {
-//   const LiveStreamCategories({super.key});
-//
-//   @override
-//   _LiveStreamCategoriesState createState() => _LiveStreamCategoriesState();
-// }
-//
-// class _LiveStreamCategoriesState extends State<LiveStreamCategories> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: Colors.white,
-//         title: Text(
-//           'Live Darshan From Darbar',
-//           style: GoogleFonts.poppins(
-//             textStyle: Theme.of(context).textTheme.bodySmall,
-//             fontSize: 20,
-//             color: Colors.indigoAccent,
-//             fontWeight: FontWeight.w600,
-//             fontStyle: FontStyle.normal,
-//           ),
-//         ),
-//       ),
-//       body: SingleChildScrollView(
-//         child: Column(
-//           children: <Widget>[
-//             Row(
-//               children: <Widget>[
-//                 Expanded(
-//                   child: InkWell(
-//                     onTap: () {
-//                       if (Platform.isAndroid) {
-//                         SystemChrome.setPreferredOrientations([
-//                           DeviceOrientation.landscapeRight,
-//                           DeviceOrientation.landscapeLeft,
-//                         ]);
-//                         Navigator.pushNamed(context, '/livevideo',
-//                             arguments: ScreenArguments(
-//                                 1,
-//                                 "rtsp://admin:Globotech@12345@182.48.203.143:1026",
-//                                 1));
-//                       } else {
-//                         Navigator.pushNamed(context, '/livevideo',
-//                             arguments: ScreenArguments(
-//                                 1,
-//                                 "https://rtsp.me/embed/kGKeFAER/",
-//                                 1));
-//
-//                         // GoogleFonts.poppins(
-//                         //   textStyle:
-//                         //   Theme.of(context).textTheme.bodyMedium,
-//                         //   fontSize: 18,
-//                         //   color: Colors.blueAccent,
-//                         //   fontWeight: FontWeight.w600,
-//                         //   fontStyle: FontStyle.normal,
-//                         // ),
-//
-//                         //
-//                         // Fluttertoast.showToast(
-//                         //     msg: "Stay tuned. We are launching soon.",
-//                         //     toastLength: Toast.LENGTH_LONG,
-//                         //     gravity: ToastGravity.SNACKBAR,
-//                         //     timeInSecForIosWeb: 2,
-//                         //     backgroundColor: Colors.white,
-//                         //     textColor: Colors.blueAccent,
-//                         //     fontSize: 18.0);
-//                       }
-//                     },
-//                     child: Card(
-//                       child: Column(
-//                         mainAxisSize: MainAxisSize.min,
-//                         children: <Widget>[
-//                           ClipRRect(
-//                             borderRadius: const BorderRadius.only(
-//                               topLeft: Radius.circular(8.0),
-//                               topRight: Radius.circular(8.0),
-//                             ),
-//                             child: Image.asset(
-//                               'assets/img/cam1.jpg',
-//                               width: double.infinity,
-//                               // Make the image take the full width
-//                               fit: BoxFit.cover,
-//                             ),
-//                           ),
-//                           Container(
-//                             decoration: const BoxDecoration(
-//                                 border: Border(top: BorderSide(width: 1))),
-//                             padding: const EdgeInsets.symmetric(
-//                                 horizontal: 10, vertical: 5),
-//                             alignment: Alignment.center,
-//                             child: Text(
-//                               "Sainjans Room",
-//                               style: GoogleFonts.poppins(
-//                                 textStyle:
-//                                     Theme.of(context).textTheme.bodyMedium,
-//                                 fontSize: 18,
-//                                 color: Colors.blueAccent,
-//                                 fontWeight: FontWeight.w600,
-//                                 fontStyle: FontStyle.normal,
-//                               ),
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//                 Expanded(
-//                   child: InkWell(
-//                     onTap: () {
-//
-//                       if (Platform.isAndroid) {
-//                         SystemChrome.setPreferredOrientations([
-//                           DeviceOrientation.landscapeRight,
-//                           DeviceOrientation.landscapeLeft,
-//                         ]);
-//                         Navigator.pushNamed(context, '/livevideo',
-//                             arguments: ScreenArguments(
-//                                 1,
-//                                 "rtsp://admin:Globotech@12345@182.48.203.143:1024",
-//                                 2));
-//                       } else {
-//                         Navigator.pushNamed(context, '/livevideo',
-//                             arguments: ScreenArguments(
-//                                 1,
-//                                 "https://rtsp.me/embed/dFTdiiR7/",
-//                                 2));
-//                         // Fluttertoast.showToast(
-//                         //     msg: "Stay tuned. We are launching soon.",
-//                         //     toastLength: Toast.LENGTH_LONG,
-//                         //     gravity: ToastGravity.SNACKBAR,
-//                         //     timeInSecForIosWeb: 1,
-//                         //     backgroundColor: Colors.white,
-//                         //     textColor: Colors.blueAccent,
-//                         //     fontSize: 18.0);
-//                       }
-//                     },
-//                     child: Card(
-//                       child: Column(
-//                         mainAxisSize: MainAxisSize.min,
-//                         children: <Widget>[
-//                           ClipRRect(
-//                             borderRadius: const BorderRadius.only(
-//                               topLeft: Radius.circular(8.0),
-//                               topRight: Radius.circular(8.0),
-//                             ),
-//                             child: Image.asset(
-//                               'assets/img/cam2.jpg',
-//                               width: double.infinity,
-//                               // Make the image take the full width
-//                               fit: BoxFit
-//                                   .cover, // Ensure the image covers the entire space
-//                             ),
-//                           ),
-//                           Container(
-//                             decoration: const BoxDecoration(
-//                                 border: Border(top: BorderSide(width: 1))),
-//                             padding: const EdgeInsets.symmetric(
-//                                 horizontal: 10, vertical: 5),
-//                             alignment: Alignment.center,
-//                             child: Text(
-//                               "Gurus Room",
-//                               style: GoogleFonts.poppins(
-//                                 textStyle:
-//                                     Theme.of(context).textTheme.bodyMedium,
-//                                 fontSize: 18,
-//                                 color: Colors.blueAccent,
-//                                 fontWeight: FontWeight.w600,
-//                                 fontStyle: FontStyle.normal,
-//                               ),
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//             Row(
-//               children: <Widget>[
-//                 Expanded(
-//                   child: InkWell(
-//                     onTap: () {
-//
-//                       if (Platform.isAndroid) {
-//                         SystemChrome.setPreferredOrientations([
-//                           DeviceOrientation.landscapeRight,
-//                           DeviceOrientation.landscapeLeft,
-//                         ]);
-//                         Navigator.pushNamed(context, '/livevideo',
-//                             arguments: ScreenArguments(
-//                                 1,
-//                                 "rtsp://admin:Globotech@12345@182.48.203.143:1025",
-//                                 3));
-//                       } else {
-//                         Navigator.pushNamed(context, '/livevideo',
-//                             arguments: ScreenArguments(
-//                                 1,
-//                                 "https://rtsp.me/embed/tfNGQ5TA/",
-//                                 3));
-//                       }
-//                     },
-//                     child: Card(
-//                       child: Column(
-//                         mainAxisSize: MainAxisSize.min,
-//                         children: <Widget>[
-//                           ClipRRect(
-//                             borderRadius: const BorderRadius.only(
-//                               topLeft: Radius.circular(8.0),
-//                               topRight: Radius.circular(8.0),
-//                             ),
-//                             child: Image.asset(
-//                               'assets/img/cam3.jpg',
-//                               width: double.infinity,
-//                               // Make the image take the full width
-//                               fit: BoxFit
-//                                   .cover, // Ensure the image covers the entire space
-//                             ),
-//                           ),
-//                           Container(
-//                             decoration: const BoxDecoration(
-//                                 border: Border(top: BorderSide(width: 1))),
-//                             padding: const EdgeInsets.symmetric(
-//                                 horizontal: 10, vertical: 5),
-//                             alignment: Alignment.center,
-//                             child: Text(
-//                               "Samadhi Room",
-//                               style: GoogleFonts.poppins(
-//                                 textStyle:
-//                                     Theme.of(context).textTheme.bodyMedium,
-//                                 fontSize: 18,
-//                                 color: Colors.blueAccent,
-//                                 fontWeight: FontWeight.w600,
-//                                 fontStyle: FontStyle.normal,
-//                               ),
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//                 Expanded(
-//                   child: InkWell(
-//                     onTap: () {
-//
-//                       if (Platform.isAndroid) {
-//                         SystemChrome.setPreferredOrientations([
-//                           DeviceOrientation.landscapeRight,
-//                           DeviceOrientation.landscapeLeft,
-//                         ]);
-//                         Navigator.pushNamed(context, '/livevideo',
-//                             arguments: ScreenArguments(
-//                                 1,
-//                                 "rtsp://admin:Globotech@12345@182.48.203.143:554",
-//                                 4));
-//                       } else {
-//                         Navigator.pushNamed(context, '/livevideo',
-//                             arguments: ScreenArguments(
-//                                 1,
-//                                 "https://rtsp.me/embed/bA4rkyb6/",
-//                                 4));
-//                         // Fluttertoast.showToast(
-//                         //     msg: "Stay tuned. We are launching soon.",
-//                         //     toastLength: Toast.LENGTH_LONG,
-//                         //     gravity: ToastGravity.SNACKBAR,
-//                         //     timeInSecForIosWeb: 1,
-//                         //     backgroundColor: Colors.white,
-//                         //     textColor: Colors.blueAccent,
-//                         //     fontSize: 18.0);
-//                       }
-//                     },
-//                     child: Card(
-//                       child: Column(
-//                         mainAxisSize: MainAxisSize.min,
-//                         children: <Widget>[
-//                           ClipRRect(
-//                             borderRadius: const BorderRadius.only(
-//                               topLeft: Radius.circular(8.0),
-//                               topRight: Radius.circular(8.0),
-//                             ),
-//                             child: Image.asset(
-//                               'assets/img/cam4.jpg',
-//                               width: double.infinity,
-//                               // Make the image take the full width
-//                               fit: BoxFit
-//                                   .cover, // Ensure the image covers the entire space
-//                             ),
-//                           ),
-//                           Container(
-//                             decoration: const BoxDecoration(
-//                                 border: Border(top: BorderSide(width: 1))),
-//                             padding: const EdgeInsets.symmetric(
-//                                 horizontal: 10, vertical: 5),
-//                             alignment: Alignment.center,
-//                             child: Text(
-//                               "Samadhi Closeup",
-//                               style: GoogleFonts.poppins(
-//                                 textStyle:
-//                                     Theme.of(context).textTheme.bodyMedium,
-//                                 fontSize: 18,
-//                                 color: Colors.blueAccent,
-//                                 fontWeight: FontWeight.w600,
-//                                 fontStyle: FontStyle.normal,
-//                               ),
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                     // child: Card(
-//                     //   child: Container(
-//                     //     // padding: EdgeInsets.all(5),
-//                     //     alignment: Alignment.center,
-//                     //     child: Column(
-//                     //       mainAxisSize: MainAxisSize.max,
-//                     //       children: <Widget>[
-//                     //         Image.asset('assets/img/cam4.jpg'),
-//                     //         Padding(
-//                     //           padding: EdgeInsets.symmetric(
-//                     //               horizontal: 0, vertical: 5),
-//                     //           //apply padding horizontal or vertical only
-//                     //           child: Text(
-//                     //             "Samadhi Closeup",
-//                     //             style: GoogleFonts.poppins(
-//                     //               textStyle:
-//                     //                   Theme.of(context).textTheme.bodySmall,
-//                     //               fontSize: 18,
-//                     //               color: Colors.blueAccent,
-//                     //               fontWeight: FontWeight.w600,
-//                     //               fontStyle: FontStyle.normal,
-//                     //             ),
-//                     //           ),
-//                     //         ),
-//                     //       ],
-//                     //     ),
-//                     //   ),
-//                     // ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-//
-
+import 'dart:convert';
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
 import 'package:darbar_app_of_kambar_darbar/ScreenArguments.dart';
-import 'dart:io' show Platform;
-import 'dart:convert'; // For JSON decoding
-import 'package:http/http.dart' as http; // For making HTTP requests
+import 'package:darbar_app_of_kambar_darbar/main.dart';
 
 class LiveStreamCategories extends StatefulWidget {
-  const LiveStreamCategories({super.key});
+  const LiveStreamCategories({Key? key}) : super(key: key);
 
   @override
-  _LiveStreamCategoriesState createState() => _LiveStreamCategoriesState();
+  State<LiveStreamCategories> createState() => _LiveStreamCategoriesState();
 }
 
-class _LiveStreamCategoriesState extends State<LiveStreamCategories> {
-  List<dynamic> _cameraLinks = []; // To store API response data
-  bool _isLoading = true; // To manage loading state
-  bool _isError = false; // To handle API errors
-
-  @override
-  void initState() {
-    super.initState();
-    _fetchCameraLinks(); // Fetch API data when the screen loads
-  }
+class _LiveStreamCategoriesState extends State<LiveStreamCategories>
+    with SingleTickerProviderStateMixin {
+  List<dynamic> _cameraLinks = [];
+  bool _isLoading = true;
+  late AnimationController _blinkController;
 
   final Map<String, String> _imageMapping = {
     "Samadhi Room": 'assets/img/cam3.jpg',
@@ -388,41 +25,88 @@ class _LiveStreamCategoriesState extends State<LiveStreamCategories> {
     "Guru Room": 'assets/img/cam2.jpg',
     "Sainjans Room": 'assets/img/cam1.jpg',
   };
-  final Map<String, String> androidLinks = {
-    "Samadhi Room": 'rtsp://admin:Globotech@12345@182.48.203.143:1025',
-    "Samadhi Closeup": 'rtsp://admin:Globotech@12345@182.48.203.143:554',
-    "Guru Room": 'rtsp://admin:Globotech@12345@182.48.203.143:1024',
-    "Saijans Room": 'rtsp://admin:Globotech@12345@182.48.203.143:1026',
+
+  final Map<String, String> _hindiTitles = {
+    "Samadhi Room": 'समाधि कक्ष',
+    "Samadhi Closeup": 'समाधि क्लोज़-अप',
+    "Guru Room": 'गुरु कक्ष',
+    "Sainjans Room": 'सांईंजन कक्ष',
   };
+
+  // NVR stream fallbacks
+  final Map<String, String> _androidLinks = {
+    "Samadhi Room": 'rtsp://admin:Globotech@12345@116.73.65.158:554/streaming/channels/101',
+    "Samadhi Closeup": 'rtsp://admin:Globotech@12345@116.73.65.158:554/streaming/channels/102',
+    "Guru Room": 'rtsp://admin:Globotech@12345@116.73.65.158:554/streaming/channels/103',
+    "Sainjans Room": 'rtsp://admin:Globotech@12345@116.73.65.158:554/streaming/channels/104',
+  };
+
+  final List<Map<String, dynamic>> _defaultCameras = const [
+    {
+      "Title": "Samadhi Room",
+      "RTSPLink": "rtsp://admin:Globotech@12345@116.73.65.158:554/streaming/channels/101",
+    },
+    {
+      "Title": "Samadhi Closeup",
+      "RTSPLink": "rtsp://admin:Globotech@12345@116.73.65.158:554/streaming/channels/102",
+    },
+    {
+      "Title": "Guru Room",
+      "RTSPLink": "rtsp://admin:Globotech@12345@116.73.65.158:554/streaming/channels/103",
+    },
+    {
+      "Title": "Sainjans Room",
+      "RTSPLink": "rtsp://admin:Globotech@12345@116.73.65.158:554/streaming/channels/104",
+    },
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _blinkController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    )..repeat(reverse: true);
+
+    _fetchCameraLinks();
+  }
+
+  @override
+  void dispose() {
+    _blinkController.dispose();
+    super.dispose();
+  }
 
   Future<void> _fetchCameraLinks() async {
     const String apiUrl = 'https://kambardarbar.org/cameralinks.php';
 
     try {
-      final response = await http.get(Uri.parse(apiUrl));
+      final response = await http
+          .get(Uri.parse(apiUrl))
+          .timeout(const Duration(seconds: 4));
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        if (data['status'] == 'success' && data['links'] != null) {
-          setState(() {
-            _cameraLinks = data['links']; // Store the list of cameras
-            _isLoading = false; // Stop loading
-          });
-        } else {
-          setState(() {
-            _isError = true; // Mark as error if API response is unexpected
-            _isLoading = false;
-          });
+        if (data['status'] == 'success' &&
+            data['links'] != null &&
+            (data['links'] as List).isNotEmpty) {
+          if (mounted) {
+            setState(() {
+              _cameraLinks = data['links'];
+              _isLoading = false;
+            });
+            return;
+          }
         }
-      } else {
-        setState(() {
-          _isError = true;
-          _isLoading = false;
-        });
       }
     } catch (e) {
+      debugPrint("Camera API fallback activated: $e");
+    }
+
+    // Default to the 4 Darbar HD cameras if the server endpoint is unreachable
+    if (mounted) {
       setState(() {
-        _isError = true;
+        _cameraLinks = _defaultCameras;
         _isLoading = false;
       });
     }
@@ -430,148 +114,224 @@ class _LiveStreamCategoriesState extends State<LiveStreamCategories> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-          'Live Darshan From Darbar',
-          style: GoogleFonts.poppins(
-            textStyle: Theme.of(context).textTheme.bodySmall,
-            fontSize: 20,
-            color: Colors.indigoAccent,
-            fontWeight: FontWeight.w600,
-            fontStyle: FontStyle.normal,
-          ),
-        ),
-      ),
-      body: _isLoading
-          ? const Center(
-              child:
-                  CircularProgressIndicator()) // Show loader while fetching data
-          : _isError
-              ? const Center(child: Text('Failed to load camera links'))
-              : _buildCameraList(), // Build camera cards dynamically
-    );
-  }
+    return AnimatedBuilder(
+      animation: Listenable.merge([themeNotifier, languageNotifier]),
+      builder: (context, _) {
+        final bool isDark = themeNotifier.value == ThemeMode.dark;
+        final int lang = languageNotifier.value; // 0 = English, 1 = Hindi
 
-  Widget _buildCameraList() {
-    return GridView.builder(
-      padding: const EdgeInsets.all(8.0),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2, // Number of cards in each row
-        crossAxisSpacing: 2.0, // Space between columns
-        mainAxisSpacing: 2.0, // Space between rows
-        childAspectRatio: 4.6 / 4, // Adjust aspect ratio of the cards
-      ),
-      itemCount: _cameraLinks.length,
-      shrinkWrap: true,
-      physics:
-          const NeverScrollableScrollPhysics(), // Prevents GridView from scrolling
-      itemBuilder: (context, index) {
-        final camera = _cameraLinks[index];
-        final title = camera['Title'];
-        final imageUrl = _imageMapping[title] ?? '';
-        final androidLink = androidLinks[title] ?? '';
+        final Color scaffoldBg = isDark
+            ? const Color(0xFF131315)
+            : const Color.fromRGBO(235, 236, 222, 1);
+        final Color cardBg = isDark ? const Color(0xFF1E1E24) : Colors.white;
+        final Color primaryText = isDark ? Colors.white : const Color(0xFF2C221E);
+        final Color appBarColor = isDark ? const Color(0xFF1E1E24) : Colors.white;
+        final Color accentColor = isDark ? const Color(0xFFFF9E80) : const Color(0xFFE65100);
 
-        // Get a list of keys to access by index
-        final keysList = androidLinks.keys.toList();
-
-        String selectedKey = keysList[index];
-        String selectedLink = androidLinks[selectedKey]!;
-
-
-        return Card(
-          child: InkWell(
-            onTap: () {
-              if (Platform.isIOS) {
-                Navigator.pushNamed(
-                  context,
-                  '/livevideo',
-                  arguments: ScreenArguments(1, camera['RTSPLink'], 1),
-                );
-              } else if (Platform.isAndroid) {
-                Navigator.pushNamed(
-                  context,
-                  '/livevideo',
-                  arguments: ScreenArguments(index + 1, selectedLink, index + 1),
-                );
-              }
-            },
-            child:
-
-                // child: Card(
-//                       child: Column(
-//                         mainAxisSize: MainAxisSize.min,
-//                         children: <Widget>[
-//                           ClipRRect(
-//                             borderRadius: const BorderRadius.only(
-//                               topLeft: Radius.circular(8.0),
-//                               topRight: Radius.circular(8.0),
-//                             ),
-//                             child: Image.asset(
-//                               'assets/img/cam4.jpg',
-//                               width: double.infinity,
-//                               // Make the image take the full width
-//                               fit: BoxFit
-//                                   .cover, // Ensure the image covers the entire space
-//                             ),
-//                           ),
-//                           Container(
-//                             decoration: const BoxDecoration(
-//                                 border: Border(top: BorderSide(width: 1))),
-//                             padding: const EdgeInsets.symmetric(
-//                                 horizontal: 10, vertical: 5),
-//                             alignment: Alignment.center,
-//                             child: Text(
-//                               "Samadhi Closeup",
-//                               style: GoogleFonts.poppins(
-//                                 textStyle:
-//                                     Theme.of(context).textTheme.bodyMedium,
-//                                 fontSize: 18,
-//                                 color: Colors.blueAccent,
-//                                 fontWeight: FontWeight.w600,
-//                                 fontStyle: FontStyle.normal,
-//                               ),
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-                Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(8.0),
-                    topRight: Radius.circular(8.0),
-                  ),
-                  child: Image.asset(
-                    imageUrl,
-                    width: double.infinity,
-                    height: 120,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Container(
-                  decoration: const BoxDecoration(
-                      border: Border(top: BorderSide(width: 1))),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  alignment: Alignment.center,
-                  child: Text(
-                    title,
-                    style: GoogleFonts.poppins(
-                      textStyle: Theme.of(context).textTheme.bodyMedium,
-                      fontSize: 16,
-                      color: Colors.blueAccent,
-                      fontWeight: FontWeight.w600,
-                      fontStyle: FontStyle.normal,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
+        return Scaffold(
+          backgroundColor: scaffoldBg,
+          appBar: AppBar(
+            backgroundColor: appBarColor,
+            elevation: 0.5,
+            centerTitle: true,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios_new_rounded, color: accentColor),
+              onPressed: () => Navigator.pop(context),
             ),
+            title: Text(
+              lang == 0 ? 'Select Live Camera' : 'लाइव कैमरा चुनें',
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                color: accentColor,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          body: _isLoading
+              ? Center(
+            child: CircularProgressIndicator(color: accentColor),
+          )
+              : GridView.builder(
+            padding: const EdgeInsets.symmetric(
+                horizontal: 16.0, vertical: 20.0),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 14.0,
+              mainAxisSpacing: 14.0,
+              childAspectRatio: 0.88,
+            ),
+            itemCount: _cameraLinks.length,
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context, index) {
+              final camera = _cameraLinks[index];
+              final String titleEn = camera['Title'] ?? 'Camera ${index + 1}';
+              final String title = lang == 0
+                  ? titleEn
+                  : (_hindiTitles[titleEn] ?? titleEn);
+              final String imageUrl =
+                  _imageMapping[titleEn] ?? 'assets/img/cam1.jpg';
+
+              final keysList = _androidLinks.keys.toList();
+              String selectedKey = keysList.length > index
+                  ? keysList[index]
+                  : keysList.first;
+              String selectedLink = _androidLinks[selectedKey]!;
+
+              return Container(
+                decoration: BoxDecoration(
+                  color: cardBg,
+                  borderRadius: BorderRadius.circular(22.0),
+                  border: Border.all(
+                    color: isDark
+                        ? Colors.white12
+                        : Colors.black.withOpacity(0.04),
+                    width: 1,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: isDark
+                          ? Colors.black45
+                          : Colors.black.withOpacity(0.06),
+                      blurRadius: 12,
+                      offset: const Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(22.0),
+                    onTap: () {
+                      if (Platform.isIOS) {
+                        Navigator.pushNamed(
+                          context,
+                          '/livevideo',
+                          arguments: ScreenArguments(
+                            lang,
+                            camera['RTSPLink'] ?? selectedLink,
+                            index + 1,
+                          ),
+                        );
+                      } else {
+                        Navigator.pushNamed(
+                          context,
+                          '/livevideo',
+                          arguments: ScreenArguments(
+                            lang,
+                            selectedLink,
+                            index + 1,
+                          ),
+                        );
+                      }
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 3,
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              ClipRRect(
+                                borderRadius: const BorderRadius.vertical(
+                                    top: Radius.circular(22.0)),
+                                child: Image.asset(
+                                  imageUrl,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.25),
+                                  borderRadius:
+                                  const BorderRadius.vertical(
+                                      top: Radius.circular(22.0)),
+                                ),
+                              ),
+                              const Center(
+                                child: Icon(
+                                  Icons.play_circle_fill_rounded,
+                                  color: Colors.white,
+                                  size: 44,
+                                ),
+                              ),
+                              Positioned(
+                                top: 10,
+                                right: 10,
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 4),
+                                  decoration: BoxDecoration(
+                                    color: Colors.black.withOpacity(0.65),
+                                    borderRadius:
+                                    BorderRadius.circular(12),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      FadeTransition(
+                                        opacity: _blinkController,
+                                        child: Container(
+                                          width: 6,
+                                          height: 6,
+                                          decoration: const BoxDecoration(
+                                            color: Colors.redAccent,
+                                            shape: BoxShape.circle,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 4),
+                                      Text(
+                                        "LIVE",
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.white,
+                                          letterSpacing: 0.5,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border(
+                                top: BorderSide(
+                                  width: 1,
+                                  color: isDark
+                                      ? Colors.white10
+                                      : Colors.black12,
+                                ),
+                              ),
+                            ),
+                            alignment: Alignment.center,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8),
+                            child: Text(
+                              title,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.poppins(
+                                fontSize: 13,
+                                color: primaryText,
+                                fontWeight: FontWeight.w700,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
         );
       },

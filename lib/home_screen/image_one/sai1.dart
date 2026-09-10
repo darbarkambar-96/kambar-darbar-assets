@@ -1,5 +1,6 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:flutter_vlc_player/flutter_vlc_player.dart';
+import 'package:flutter_vlc_player_16kb/flutter_vlc_player.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:darbar_app_of_kambar_darbar/ScreenArguments.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,7 +27,7 @@ class _Sai1State extends State<Sai1> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: (Platform.isAndroid) ? AppBar(
+      appBar: (!kIsWeb && Platform.isAndroid) ? AppBar(
         backgroundColor: Colors.white,
         title:  Text('Jeevani of Sai Vilayatrai Sahib',style: GoogleFonts.poppins(
           textStyle: Theme.of(context).textTheme.bodySmall,
@@ -35,7 +36,7 @@ class _Sai1State extends State<Sai1> {
           fontWeight: FontWeight.w600,
           fontStyle: FontStyle.normal,
         ),),
-       
+
 
       ): AppBar(
         backgroundColor: Colors.white,
@@ -49,7 +50,7 @@ class _Sai1State extends State<Sai1> {
           fontWeight: FontWeight.w600,
           fontStyle: FontStyle.normal,
         ),),
-        ),
+      ),
 
       body:
       SingleChildScrollView(
@@ -57,7 +58,7 @@ class _Sai1State extends State<Sai1> {
           color: const Color.fromRGBO(223, 224, 208, 1),
           child : Padding(
             padding:EdgeInsets.symmetric(vertical: 20,horizontal: 25),
-          child :Column(
+            child :Column(
               children: <Widget>[
                 Text("Early Ages : \n Saijan was born in 1825 to Munshi Pratab Rai in Halla a village in Sindh, Pakistan. His mother was Mata Cheti Bai. Munshi Pratab Rai was a well to do person & served with the 'Mirs' as a munshi. In those days to be a munshi to the Mirs was a great thing as it was the munshis who ran affairs of the State",  style: GoogleFonts.poppins(
                   textStyle: Theme.of(context).textTheme.bodySmall,
@@ -82,13 +83,13 @@ class _Sai1State extends State<Sai1> {
                 ),
                 Align(
                     alignment: Alignment.center,
-                child : Text("Divine Awakening",  style: GoogleFonts.poppins(
-                  textStyle: Theme.of(context).textTheme.bodySmall,
-                  fontSize: 18,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w800,
-                  fontStyle: FontStyle.normal,
-                ),)),
+                    child : Text("Divine Awakening",  style: GoogleFonts.poppins(
+                      textStyle: Theme.of(context).textTheme.bodySmall,
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w800,
+                      fontStyle: FontStyle.normal,
+                    ),)),
                 const Divider(
                   height: 20,
                   thickness: 5,
@@ -168,11 +169,11 @@ class _Sai1State extends State<Sai1> {
                 ),),
                 Text("Everyone sitting there was taken aback and one woman shouted \"Oh God, Where was a man like this, when my only son was on his death bed\". After Parikarma, Bhai Dayaram came back to his cot and his pulse rate started going down. His wife beseeched Vali Vilayat Rai and said, \"Oh Vali, don't make me a widow\". Vali said \" What can I do. Someone has to go at this moment, if you people are not ready then I will have to go myself\". The lady replied, \"I don't know but I will not be a widow\". Upon this Vali Vilayatrai prepared himself for journey from this world but his own wife who was there said \"Oh Lord, you are saving one woman from being a widow and in turn you are making me a widow. It would be better that you take my life.” Vali replied “OK. Be that as it may. Be prepared to depart from this world\". Having said that Vali Vilayat Rai moved away from there. His wife acquired the same disease as Bhai Dayaram and within a short time she departed from this world, in the hands of her husband. Vali Vilayat Rai completed the 12th day ceremony of his wife's demise and came back to Kambar. Bhai Dayaram lived his normal life.",
                   style: GoogleFonts.poppins(textStyle: Theme.of(context).textTheme.bodySmall,
-                  fontSize: 18,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                  fontStyle: FontStyle.normal,
-                ),),
+                    fontSize: 18,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                  ),),
                 Text("That was the greatness of Vali Vilayat Rai, who always said that you can be closer to God even while doing day to day chores of mortal world. He preached \"Bhakti in Grahasti\", and said God is nearer than your own eyes, but you need to make yourself capable to realize him through love, shewa and Jap.",
                   style: GoogleFonts.poppins(textStyle: Theme.of(context).textTheme.bodySmall,
                     fontSize: 18,
@@ -202,25 +203,24 @@ class _Sai1State extends State<Sai1> {
                   color: Colors.black12,
                 ),
                 Text("In year 1887 Vali Vilayat Rai decided to move to Vainkunthdham. Read more  --(In order to bid goodbye to all his friends, he went on a tour. In the end he fell slightly ill at Sehwan and came to Larkana to his friend Diwan Chandumal Motwani and told him that, \"I now want to depart\". Chandumal Motwani said, \"if that be so, then do it here at Larkana\". But Vali Vilayat Rai said that, \"I desire to depart from Kambar\".)",
-                style: GoogleFonts.poppins(textStyle: Theme.of(context).textTheme.bodySmall,
+                  style: GoogleFonts.poppins(textStyle: Theme.of(context).textTheme.bodySmall,
                     fontSize: 18,
                     color: Colors.black,
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
                   ),),
                 Text(" On 14th January,1887, Vali Vilayat Rai at the age of 62 years, was doing Satsang and in the end he told Sai Jiwatsingh, \"Alright get ready, I am just going round the corner and then I shall depart\". Everyone was stunned.Vali Vilayat Rai got up from the chair, went round the corner, came back, lied down on the floor and his atma merged with paramatma exactly at 4:00 am on 15th January, 1887.",
-                style: GoogleFonts.poppins(textStyle: Theme.of(context).textTheme.bodySmall,
+                  style: GoogleFonts.poppins(textStyle: Theme.of(context).textTheme.bodySmall,
                     fontSize: 18,
                     color: Colors.black,
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
                   ),),
-                ],
-          ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
-

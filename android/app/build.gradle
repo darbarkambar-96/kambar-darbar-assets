@@ -4,30 +4,12 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
-def localProperties = new Properties()
-def localPropertiesFile = rootProject.file('local.properties')
-if (localPropertiesFile.exists()) {
-    localPropertiesFile.withReader('UTF-8') { reader ->
-        localProperties.load(reader)
-    }
-}
-
-def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
-if (flutterVersionCode == null) {
-    flutterVersionCode = '2'
-}
-
-def flutterVersionName = localProperties.getProperty('flutter.versionName')
-if (flutterVersionName == null) {
-    flutterVersionName = '1.1'
-}
-
 android {
     namespace "com.sts.kambardarbar"
-    compileSdk 34
-    ndkVersion flutter.ndkVersion
+    ndkVersion = "28.2.13676358"
 
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -40,12 +22,12 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
+    buildToolsVersion "36.0.0"
+    compileSdk 36
+
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.sts.kambardarbar"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 21
+        minSdkVersion flutter.minSdkVersion
         targetSdkVersion 35
         versionCode 7
         versionName "1.0.6"
@@ -53,14 +35,10 @@ android {
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
-        }
-        getByName("release") {
-            minifyEnabled = false
-            shrinkResources = false
-            proguardFiles(getDefaultProguardFile('proguard-android.txt'), "proguard-rules.pro")
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), "proguard-rules.pro"
         }
     }
 }
@@ -69,4 +47,12 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.4'
+}
+
+apply plugin: 'com.google.gms.google-services'
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs << "-Xlint:-deprecation" << "-Xlint:-unchecked"
+}

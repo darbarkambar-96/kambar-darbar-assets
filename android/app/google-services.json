@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "512417363347",
+    "project_id": "kambar-darbar-96",
+    "storage_bucket": "kambar-darbar-96.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512417363347:android:a4da4a2a3c67793972a466",
+        "android_client_info": {
+          "package_name": "com.sts.kambardarbar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512417363347-c7nfjbm0noaeqtrgs63likk6ei3m2hks.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sts.kambardarbar",
+            "certificate_hash": "ec04ff25b158cc66ee08b3fa1ea64fb4a5e8f55b"
+          }
+        },
+        {
+          "client_id": "512417363347-u4p1ru385egd762j4llckdiabfe9rokt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTa8AynRq9P2gsMONusrGzO_pOExzDr0E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "512417363347-u4p1ru385egd762j4llckdiabfe9rokt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
