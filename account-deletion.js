@@ -1,4 +1,5 @@
 import { firebaseDeletionConfig } from './account-deletion-config.js';
+import { deleteFeedbackWithAttachments } from './account-deletion-media.js';
 import {
   AccountDeletionError,
   createAccountDeletionClient,
@@ -118,9 +119,31 @@ async function bootstrap() {
         return snapshot.docs.map((record) => record.id);
       },
       async deleteFeedback(ids) {
-        const batch = storeSdk.writeBatch(store);
-        for (const id of ids) batch.delete(storeSdk.doc(store, 'feedback', id));
-        await batch.commit();
+        const current = auth.currentUser;
+        if (!current) throw new AccountDeletionError('not-signed-in');
+        const account = { uid: current.uid, email: current.email || '' };
+        await deleteFeedbackWithAttachments(ids, {
+          async cleanupThread(id) {
+            const user = requireSameUser(account);
+            const token = await user.getIdToken();
+            requireSameUser(account);
+            const response = await fetch(
+              `https://darbar-admin.bitsyav.com/api/feedback/threads/${encodeURIComponent(id)}/attachments`,
+              { method: 'DELETE', headers: { Authorization: `Bearer ${token}` }, cache: 'no-store' },
+            );
+            requireSameUser(account);
+            if (!response.ok) {
+              throw new AccountDeletionError(response.status === 403 ? 'permission-denied' : 'network-request-failed');
+            }
+            return response.json();
+          },
+          async deleteDocuments(documentIds) {
+            requireSameUser(account);
+            const batch = storeSdk.writeBatch(store);
+            for (const id of documentIds) batch.delete(storeSdk.doc(store, 'feedback', id));
+            await batch.commit();
+          },
+        });
       },
       async deleteAuthenticationAccount(account) {
         await authSdk.deleteUser(requireSameUser(account));

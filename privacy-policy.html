@@ -39,6 +39,14 @@
       owner and authorized Darbar administrators; it is not a public discussion
       board. Anonymous submissions without an identified account cannot receive
       private replies.</li>
+    <li><strong>Private feedback attachments:</strong> in app versions supporting
+      attachments, you can choose a photograph or video, or record a voice note,
+      to send in your private feedback conversation. Each file can be up to
+      100 MB. Selected files and voice recordings are stored in a private
+      Cloudflare R2 bucket; the file name, type, size and attachment identifier
+      are stored with the reply in Firestore. Access requires an authenticated
+      participant in that conversation. These files are not placed in the public
+      Gallery, publications or devotional-audio library.</li>
     <li><strong>Administrator content:</strong> authorized administrators can submit
       event details, selected event photographs, news, image links and devotional
       updates to Firestore. Content intended for publication is displayed to app users.
@@ -68,6 +76,10 @@
     select a photograph or save a document using the system picker. Event and
     feedback notifications use on-device notifications; the app does not integrate
     Firebase Cloud Messaging. Disabling notifications does not delete your account.</p>
+  <p>Microphone permission is requested only if you choose to record a feedback
+    voice note. Recording is started by you, has visible Stop and Cancel controls,
+    and does not continue as a background microphone service. You can send text
+    feedback without granting microphone access.</p>
   <p>When you start devotional audio, supported app versions can continue playback
     in the background or with the screen locked. Android media controls let you
     pause, resume and stop that playback.</p>
@@ -90,6 +102,10 @@
     network services receive connection information such as your IP address when
     you connect. YouTube videos open in the external YouTube app or browser.
     External websites, video services and email apps have their own privacy practices.</p>
+  <p>Private feedback attachments are delivered through a separate authenticated
+    Cloudflare endpoint over HTTPS. The service verifies your Firebase sign-in and
+    your access to the feedback conversation for uploads and downloads. Attachment
+    responses are not stored in a shared public content cache.</p>
 
   <h2>Security</h2>
   <p>Account, feedback and administrator data sent to Firebase is encrypted in transit
@@ -114,7 +130,11 @@
     some feedback may already have been removed.</p>
   <p>Private replies are stored within their original feedback record and are
     deleted with that record when account and associated feedback deletion
-    completes.</p>
+    completes. For private attachments, the updated deletion process first queues
+    removal of the conversation's files in the cloud, then removes the feedback
+    record and app account. Temporary storage-service failures are retried
+    automatically. Once the feedback record is removed, its former attachments
+    cannot be retrieved through the authenticated conversation endpoint.</p>
   <p>The app update that adds <strong>Delete account and data</strong> in Settings
     provides the same automatic process. Older installed versions may still open an
     email draft; users of those versions can use the web page above instead.
