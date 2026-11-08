@@ -32,8 +32,13 @@
       for authorized Darbar administrators, control access to management features.</li>
     <li><strong>Feedback:</strong> when you submit feedback, Firebase Cloud Firestore
       stores the message, submission time, and the name and email available in your
-      app session. Feedback can also be submitted as an anonymous guest. It is
-      available to authorized Darbar administrators, rather than a public discussion board.</li>
+      app session. Feedback can also be submitted as an anonymous guest. In app
+      versions with private feedback conversations, replies also store the reply
+      text, sender's app user identifier and display name, administrator role and
+      submission time. A conversation is accessible only to the original account
+      owner and authorized Darbar administrators; it is not a public discussion
+      board. Anonymous submissions without an identified account cannot receive
+      private replies.</li>
     <li><strong>Administrator content:</strong> authorized administrators can submit
       event details, selected event photographs, news, image links and devotional
       updates to Firestore. Content intended for publication is displayed to app users.
@@ -63,6 +68,9 @@
     select a photograph or save a document using the system picker. Event and
     feedback notifications use on-device notifications; the app does not integrate
     Firebase Cloud Messaging. Disabling notifications does not delete your account.</p>
+  <p>When you start devotional audio, supported app versions can continue playback
+    in the background or with the screen locked. Android media controls let you
+    pause, resume and stop that playback.</p>
 
   <h2>Service providers and external content</h2>
   <p>Google Sign-In, Firebase Authentication and Cloud Firestore provide authentication
@@ -104,6 +112,9 @@
     Authentication account. Completion is shown only after these steps succeed.
     If a connection or verification step fails, follow the page's retry guidance;
     some feedback may already have been removed.</p>
+  <p>Private replies are stored within their original feedback record and are
+    deleted with that record when account and associated feedback deletion
+    completes.</p>
   <p>The app update that adds <strong>Delete account and data</strong> in Settings
     provides the same automatic process. Older installed versions may still open an
     email draft; users of those versions can use the web page above instead.
@@ -126,4 +137,3 @@
 </main>
 </body>
 </html>
-
