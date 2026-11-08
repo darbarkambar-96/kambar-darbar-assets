@@ -5,40 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kambar Darbar — Account and data deletion</title>
   <style>
-    :root { color-scheme: light dark; }
-    body { font: 1rem/1.65 system-ui, sans-serif; max-width: 46rem; margin: 3rem auto; padding: 0 1.25rem; }
-    h1 { line-height: 1.25; }
-    a { overflow-wrap: anywhere; }
-    .request { display: inline-block; padding: .65rem 1rem; border: 1px solid currentColor; border-radius: .5rem; }
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body { color: #202124; background: white; font: 1rem/1.65 system-ui, sans-serif; max-width: 46rem; margin: 3rem auto; padding: 0 1.25rem; }
+    h1, h2 { line-height: 1.25; }
+    h2 { margin-top: 2rem; font-size: 1.3rem; }
+    a, #account-email { overflow-wrap: anywhere; }
+    button { font: inherit; font-weight: 600; padding: .7rem 1rem; border: 1px solid #747775; border-radius: .4rem; background: white; color: #202124; cursor: pointer; }
+    button:disabled { opacity: .55; cursor: not-allowed; }
+    :focus-visible { outline: 3px solid #1a73e8; outline-offset: 3px; }
+    .account { margin: 1.5rem 0; padding: 1.1rem; border: 1px solid #dadce0; border-radius: .5rem; }
+    .account p:first-child { margin-top: 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1rem; }
+    .danger { background: #b3261e; color: white; border-color: #b3261e; }
+    .confirmation { display: flex; align-items: flex-start; gap: .7rem; margin: 1.25rem 0; }
+    .confirmation input { flex: none; margin-top: .45rem; width: 1.2rem; height: 1.2rem; }
+    #status { padding: .85rem 1rem; border-left: 3px solid #747775; background: #f8f9fa; }
+    #status[data-kind="error"] { border-color: #b3261e; }
+    #status[data-kind="success"] { border-color: #137333; }
+    [hidden] { display: none !important; }
+    .quiet { color: #5f6368; font-size: .925rem; }
+    @media (max-width: 420px) { body { margin-top: 1.5rem; } .actions button { width: 100%; } }
   </style>
 </head>
 <body>
   <main>
     <h1>Kambar Darbar: account and data deletion</h1>
     <p>Android app: <strong>org.kambardarbar.app</strong>. Published by BITSY INFOTECH.</p>
-    <p>You can request deletion without installing or signing in to the app.</p>
-    <p>Email <a href="mailto:darbarkambar@gmail.com">darbarkambar@gmail.com</a>
-      with the subject <strong>Kambar Darbar app account and data deletion request</strong>.
-      Send from the email address used in the app, or identify that address in your message
-      so the Darbar team can verify which account and feedback belong to you.</p>
-    <p><a class="request" href="mailto:darbarkambar@gmail.com?subject=Kambar%20Darbar%20app%20account%20and%20data%20deletion%20request&amp;body=Please%20delete%20my%20Kambar%20Darbar%20app%20account%20and%20its%20associated%20feedback.%0A%0AEmail%20address%20used%20in%20the%20app%3A%20">Open an email request</a></p>
-    <p>Review the draft and send it yourself. Opening a draft does not submit a request.</p>
-    <h2>What the request covers</h2>
-    <p>Request removal of your Kambar Darbar app account, its sign-in profile, and associated
-      personal information in submitted feedback. This does not delete your Google account.</p>
-    <h2>Completion time and retention</h2>
-    <p>The Darbar team may contact you to verify ownership. Within 30 days after
-      ownership is verified, the team will delete the app's Firebase Authentication
-      account and associated feedback and personal information from the active app
-      database. These app records are not intentionally retained after the request
-      is completed. The team will confirm completion by email.</p>
-    <p>Downloads, notes and reading settings stored only on your phone are separate from
-      the online account. The app's Settings includes a reading-data reset; your phone's
-      app-storage controls can remove the remaining local app data.</p>
-    <p>Public devotional content, event schedules and publications are separate from
-      your sign-in account. Do not send passwords or identity documents with a request.</p>
+    <p>Delete your Kambar Darbar app account and its associated feedback here.
+      You do not need to install the app or send an email request.</p>
+    <p><strong>Your Google account is not deleted.</strong> Sign in with the same
+      Google account you use in the Kambar Darbar app.</p>
+
+    <p id="status" role="status" aria-live="polite" aria-atomic="true">Loading secure sign-in…</p>
+    <div id="sign-in-actions" class="actions">
+      <button id="sign-in" type="button" disabled>Sign in with Google</button>
+    </div>
+    <section id="account-panel" class="account" aria-labelledby="account-heading" hidden>
+      <h2 id="account-heading">Confirm the app account to delete</h2>
+      <p>Signed in as <strong id="account-email"></strong>.</p>
+      <p>Deletion permanently removes this app's sign-in profile and associated
+        feedback from our active app services. It cannot be undone.</p>
+      <label class="confirmation">
+        <input id="confirm-deletion" type="checkbox">
+        <span>I understand and want to permanently delete this Kambar Darbar app
+          account and its associated feedback.</span>
+      </label>
+      <div class="actions">
+        <button id="delete-account" class="danger" type="button" disabled>Delete my app account and data</button>
+        <button id="change-account" type="button">Use a different Google account</button>
+      </div>
+      <p class="quiet">Google will ask you to confirm the same account again before
+        deletion begins. Keep this page open until it reports completion.</p>
+    </section>
+    <noscript><p>JavaScript is needed for secure account deletion on this page.
+      Enable it, or use the account-deletion option in the Android app's Settings.</p></noscript>
+
+    <h2>What is deleted</h2>
+    <p>Your Kambar Darbar app account, its available sign-in profile information,
+      and the personal information in feedback associated with that account.
+      Deletion runs after you confirm your identity; no staff approval is required.</p>
+    <p>The page reports success only after the app-account deletion has been
+      acknowledged. If your connection fails, follow the on-screen instructions
+      and try again. Some feedback may already have been removed during an
+      interrupted attempt.</p>
+    <h2>What stays separate</h2>
+    <p>Your Google account and public devotional content, schedules and
+      publications remain separate from this app account.</p>
+    <p>Downloads, notes, bookmarks, reading settings and other data stored only on
+      your phone cannot be erased by this website. Use the app's reading-data
+      reset or Android's app-storage controls to remove local data; files you
+      saved outside the app may need to be removed separately.</p>
+    <h2>Delete from the Android app instead</h2>
+    <p>In a version with automatic deletion, sign in and open
+      <strong>Settings → Privacy &amp; account → Delete account and data</strong>.
+      If your installed version offers only an email draft, use the self-service
+      form above or update the app.</p>
+    <p class="quiet">This page keeps its sign-in session only in memory. It does
+      not store your Google password or keep a signed-in session after you close it.</p>
     <p><a href="privacy-policy.html">Kambar Darbar app privacy policy</a></p>
-    <p>Updated: 30 October 2026.</p>
+    <p class="quiet">Updated: 8 November 2026.</p>
   </main>
+  <script type="module" src="./account-deletion.js"></script>
 </body>
 </html>
