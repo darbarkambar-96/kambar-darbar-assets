@@ -44,9 +44,9 @@
     <section id="account-panel" class="account" aria-labelledby="account-heading" hidden>
       <h2 id="account-heading">Confirm the app account to delete</h2>
       <p>Signed in as <strong id="account-email"></strong>.</p>
-      <p>Deletion permanently removes this app's sign-in profile and associated
+      <p id="deletion-description">Deletion permanently removes this app's sign-in profile and associated
         feedback from our active app services. It cannot be undone.</p>
-      <label class="confirmation">
+      <label id="deletion-confirmation" class="confirmation">
         <input id="confirm-deletion" type="checkbox">
         <span>I understand and want to permanently delete this Kambar Darbar app
           account and its associated feedback.</span>
@@ -55,7 +55,7 @@
         <button id="delete-account" class="danger" type="button" disabled>Delete my app account and data</button>
         <button id="change-account" type="button">Use a different Google account</button>
       </div>
-      <p class="quiet">Google will ask you to confirm the same account again before
+      <p id="deletion-note" class="quiet">Google will ask you to confirm the same account again before
         deletion begins. Keep this page open until it reports completion.</p>
     </section>
     <noscript><p>JavaScript is needed for secure account deletion on this page.

@@ -3,6 +3,7 @@ import {
   AccountDeletionError,
   createAccountDeletionClient,
   deletionErrorMessage,
+  isProtectedDeletionAccount,
 } from './account-deletion-core.js';
 
 const byId = (id) => document.getElementById(id);
@@ -14,10 +15,15 @@ const emailLabel = byId('account-email');
 const confirmBox = byId('confirm-deletion');
 const deleteButton = byId('delete-account');
 const changeButton = byId('change-account');
+const accountHeading = byId('account-heading');
+const deletionDescription = byId('deletion-description');
+const confirmationLabel = byId('deletion-confirmation');
+const deletionNote = byId('deletion-note');
 let busy = false;
 let ready = false;
 let displayedUid = null;
 let finished = false;
+let protectedAccount = false;
 
 function setStatus(message, kind = 'info') {
   status.textContent = message;
@@ -33,14 +39,20 @@ function setBusy(value) {
 function updateControls() {
   signInButton.disabled = !ready || busy || finished;
   changeButton.disabled = busy;
-  confirmBox.disabled = busy;
-  deleteButton.disabled = busy || !displayedUid || !confirmBox.checked;
+  confirmBox.disabled = busy || protectedAccount;
+  deleteButton.disabled = busy || protectedAccount || !displayedUid || !confirmBox.checked;
 }
 
 function renderAccount(user) {
   displayedUid = user?.uid || null;
+  protectedAccount = isProtectedDeletionAccount(user?.email);
   emailLabel.textContent = user?.email || '';
   confirmBox.checked = false;
+  accountHeading.textContent = protectedAccount ? 'Administrator account protected' : 'Confirm the app account to delete';
+  deletionDescription.hidden = protectedAccount;
+  confirmationLabel.hidden = protectedAccount;
+  deleteButton.hidden = protectedAccount;
+  deletionNote.hidden = protectedAccount;
   accountPanel.hidden = !user || finished;
   signInActions.hidden = Boolean(user) || finished;
   updateControls();
@@ -62,6 +74,7 @@ async function bootstrap() {
 
     function requireSameUser(account) {
       const user = auth.currentUser;
+      if (isProtectedDeletionAccount(user?.email)) throw new AccountDeletionError('admin-protected');
       if (!user || user.uid !== account.uid) throw new AccountDeletionError('identity-changed');
       return user;
     }
@@ -136,7 +149,9 @@ async function bootstrap() {
       try {
         await authSdk.signInWithPopup(auth, googleProvider());
         renderAccount(auth.currentUser);
-        setStatus('Check the email address above, then confirm whether to delete this app account.');
+        setStatus(protectedAccount
+          ? deletionErrorMessage(new AccountDeletionError('admin-protected'))
+          : 'Check the email address above, then confirm whether to delete this app account.');
       } catch (error) {
         renderAccount(auth.currentUser);
         setStatus(deletionErrorMessage(error), 'error');
@@ -160,7 +175,7 @@ async function bootstrap() {
     });
 
     deleteButton.addEventListener('click', async () => {
-      if (busy || !displayedUid || !confirmBox.checked) return;
+      if (busy || protectedAccount || !displayedUid || !confirmBox.checked) return;
       const expectedUid = displayedUid;
       setBusy(true);
       try {

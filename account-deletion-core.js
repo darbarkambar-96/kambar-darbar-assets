@@ -1,5 +1,10 @@
 // Pure dependency-injected deletion ordering. No Firebase, DOM or network imports.
 export const FEEDBACK_PAGE_SIZE = 200;
+export const PROTECTED_ADMIN_EMAIL = 'darbarkambar@gmail.com';
+
+export function isProtectedDeletionAccount(email) {
+  return typeof email === 'string' && email.trim().toLowerCase() === PROTECTED_ADMIN_EMAIL;
+}
 
 export class AccountDeletionError extends Error {
   constructor(code, { dataMayHaveBeenDeleted = false, accountDeleted = false } = {}) {
@@ -28,6 +33,7 @@ export function deletionErrorMessage(error) {
     ? ' Some feedback may already have been removed. Your app-account deletion has not been confirmed.'
     : ' No deletion has been confirmed.';
   if (code === 'cancelled') return 'Google confirmation was cancelled. Your app account was not deleted.';
+  if (code === 'admin-protected') return 'Account deletion is disabled for the Darbar administrator account. Use a different Google account to delete a personal app account.';
   if (code === 'confirmation-required') return 'Select the confirmation checkbox before deleting your app account.';
   if (['identity-changed', 'not-signed-in', 'user-token-expired'].includes(code)) {
     return `Sign in again with the same Google account and confirm the displayed email address.${partial}`;
@@ -49,6 +55,9 @@ export function createAccountDeletionClient(gateway, onProgress = () => {}) {
 
   async function assertSameAccount(expected) {
     const current = await gateway.currentAccount();
+    if (isProtectedDeletionAccount(current?.email)) {
+      throw new AccountDeletionError('admin-protected');
+    }
     if (!current || current.uid !== expected.uid ||
         current.email?.trim().toLowerCase() !== expected.email.trim().toLowerCase()) {
       throw new AccountDeletionError('identity-changed');
@@ -66,6 +75,7 @@ export function createAccountDeletionClient(gateway, onProgress = () => {}) {
       try {
         const account = await gateway.currentAccount();
         if (!account) throw new AccountDeletionError('not-signed-in');
+        if (isProtectedDeletionAccount(account.email)) throw new AccountDeletionError('admin-protected');
         if (!expectedUid || account.uid !== expectedUid) throw new AccountDeletionError('identity-changed');
         if (!account.email?.trim()) throw new AccountDeletionError('email-not-verified');
         onProgress({ stage: 'reauthenticate', removedFeedback });
